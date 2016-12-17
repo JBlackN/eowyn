@@ -41,6 +41,12 @@
     { coords: [91.28, 15.18], dist: 18.0 },
   ];
 
+  var steps = 0; //2058
+  var distanceKm = (steps * 71) / 100000;
+  var distanceMi = distanceKm * 0.621371192;
+  var cumulativeDist = 0.0;
+  var markerDisplayed = false;
+
   var polylinePath = '';
   var containerWidth = parseFloat(document.getElementById('map-world').width.baseVal.value);
   var containerHeight = parseFloat(document.getElementById('map-world').height.baseVal.value);
@@ -69,6 +75,109 @@
     }
     
     document.getElementById('map-world').appendChild(point);
+
+    cumulativeDist += points[i].dist;
+    if (!markerDisplayed && cumulativeDist > distanceMi) {
+      var segLen = 0.0;
+      var subSegLens = [];
+
+      var direction = {};
+      var markerCoords = {};
+
+      if (typeof points[i - 1].smooth !== 'undefined') {
+        for (var j = 0; j < points[i - 1].smooth.length; j++) {
+          if (j == 0 || j == points[i - 1].smooth.length - 1) {
+            if (j == 0) {
+              segLen += Math.sqrt(Math.pow(Math.abs(points[i - 1].smooth[j][0] - points[i - 1].coords[0]), 2) + Math.pow(Math.abs(points[i - 1].smooth[j][1] - points[i - 1].coords[1]), 2));
+              subSegLens.push(segLen);
+            }
+            if (j == points[i - 1].smooth.length - 1) {
+              segLen += Math.sqrt(Math.pow(Math.abs(points[i].coords[0] - points[i - 1].smooth[j][0]), 2) + Math.pow(Math.abs(points[i].coords[1] - points[i - 1].smooth[j][1]), 2));
+              subSegLens.push(segLen);
+            }
+          }
+          else {
+            segLen += Math.sqrt(Math.pow(Math.abs(points[i - 1].smooth[j][0] - points[i - 1].smooth[j - 1][0]), 2) + Math.pow(Math.abs(points[i - 1].smooth[j][1] - points[i - 1].smooth[j - 1][1]), 2));
+            subSegLens.push(segLen);
+          }
+        }
+
+        console.log(segLen);
+        console.log(subSegLens);
+
+        var segNormRem = (cumulativeDist - distanceMi) / points[i].dist;
+        var segNormDone = 1 - segNormRem;
+
+        console.log(segNormRem);
+        console.log(segNormDone);
+
+        var targetSeg = 0;
+
+        for (var j = 0; j < subSegLens.length; j++) {
+          var subSegLenNorm = subSegLens[j] / segLen;
+          if (segNormDone < subSegLenNorm) {
+            targetSeg = j;
+            break;
+          }
+        }
+
+        console.log(targetSeg);
+
+        var j = targetSeg;
+
+        console.log(j);
+
+        if (j == 0) {
+          direction.x = points[i - 1].smooth[j][0] - points[i - 1].coords[0];
+          direction.y = points[i - 1].smooth[j][1] - points[i - 1].coords[1];
+
+          markerCoords.x = points[i - 1].coords[0] + (segNormDone * (1 / subSegLenNorm)) * direction.x;
+          markerCoords.y = points[i - 1].coords[1] + (segNormDone * (1 / subSegLenNorm)) * direction.y;
+        }
+        else if (j >= points[i - 1].smooth.length) {
+          direction.x = points[i].coords[0] - points[i - 1].smooth[j - 1][0];
+          direction.y = points[i].coords[1] - points[i - 1].smooth[j - 1][1];
+
+          markerCoords.x = points[i - 1].smooth[j - 1][0] + (segNormDone * (1 / subSegLenNorm)) * direction.x;
+          markerCoords.y = points[i - 1].smooth[j - 1][1] + (segNormDone * (1 / subSegLenNorm)) * direction.y;
+        }
+        else {
+          direction.x = points[i - 1].smooth[j][0] - points[i - 1].smooth[j - 1][0];
+          direction.y = points[i - 1].smooth[j][1] - points[i - 1].smooth[j - 1][1];
+
+          markerCoords.x = points[i - 1].smooth[j - 1][0] + (segNormDone * (1 / subSegLenNorm)) * direction.x;
+          markerCoords.y = points[i - 1].smooth[j - 1][1] + (segNormDone * (1 / subSegLenNorm)) * direction.y;
+        }
+      }
+      else {
+        segLen = Math.sqrt(Math.pow(Math.abs(points[i].coords[0] - points[i - 1].coords[0]), 2) + Math.pow(Math.abs(points[i].coords[1] - points[i - 1].coords[1]), 2));
+
+        var segNormRem = (cumulativeDist - distanceMi) / points[i].dist;
+        var segNormDone = 1 - segNormRem;
+
+        direction.x = points[i].coords[0] - points[i - 1].coords[0];
+        direction.y = points[i].coords[1] - points[i - 1].coords[1];
+
+        markerCoords.x = points[i - 1].coords[0] + segNormDone * direction.x;
+        markerCoords.y = points[i - 1].coords[1] + segNormDone * direction.y;
+      }
+
+      //markerCoords.x = points[i - 1].coords[0];
+      //markerCoords.y = points[i - 1].coords[1];
+
+      var marker = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+
+      marker.setAttributeNS(null, 'cx', markerCoords.x + '%');
+      marker.setAttributeNS(null, 'cy', markerCoords.y + '%');
+      marker.setAttributeNS(null, 'r', 4);
+      marker.setAttributeNS(null, 'stroke', 'green');
+      marker.setAttributeNS(null, 'stroke-width', 1);
+      marker.setAttributeNS(null, 'fill', 'green');
+
+      document.getElementById('map-world').appendChild(marker);
+
+      markerDisplayed = true;
+    }
   }
 
   var polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
