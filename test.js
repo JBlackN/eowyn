@@ -6,6 +6,12 @@
     drawPosition(slider.value);
   });
 
+  var sliderAuto = document.getElementById('map-test-auto');
+  sliderAuto.addEventListener('click', function() {
+    sliderAuto.innerText = '⌛';
+    setTimeout(animateSlider, 1);
+  });
+
   points = [
     // Bag End to Rivendell
     { coords: [6.6, 23.75], dist: 0.0, smooth: [[6.95, 25.5], [8, 25.9], [9, 25.8]] },
@@ -220,5 +226,20 @@
         markerDisplayed = true;
       }
     }
+  }
+
+  function animateSlider() {
+    var slider = document.getElementById('map-test-slider');
+    var sliderInfo = document.getElementById('map-test-slider-info');
+    var sliderValue = parseInt(slider.value);
+
+    if (sliderValue + 240 <= 899872) slider.value = sliderValue + 240;
+    else slider.value = 899872;
+
+    sliderInfo.innerText = slider.value + ' kroků';
+    drawPosition(slider.value);
+
+    if (parseInt(slider.value) < 899872) setTimeout(animateSlider, 1);
+    else document.getElementById('map-test-auto').innerText = '▶';
   }
 })();
