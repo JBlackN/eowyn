@@ -54,8 +54,32 @@
     { coords: [87.25, 19.2], dist: 16.0, smooth: [[87.5, 18.9], [88, 19.4], [88.5, 19.2], [89.8, 17]] },
     { coords: [91.28, 15.18], dist: 8.0 },
     // Rivendell to Erebor
+    { coords: [9.05, 97.7], dist: 0.0, smooth: [[9.4, 97]], breakpoint: true },
+    { coords: [9.25, 96.7], dist: 4.0, smooth: [[9.7, 96.7], [9.65, 96.1]] },
+    { coords: [10.15, 95.75], dist: 4.0, smooth: [[10.3, 96.1], [10.5, 95.35]] },
+    { coords: [10.95, 95.2], dist: 4.0, smooth: [[11.6, 94.6]] },
+    { coords: [11.8, 94.7], dist: 4.0, smooth: [[12, 94.9], [12.2, 94.45]] },
+    { coords: [12.75, 94.4], dist: 4.0, smooth: [[13.1, 94.1], [13.15, 94.5], [13.5, 93.9]] },
+    { coords: [13.64, 94.15], dist: 4.0, smooth: [[14.25, 93.7], [14.25, 94.1]] },
+    { coords: [14.58, 94.08], dist: 4.0, smooth: [[15.1, 93.55]] },
+    { coords: [15.4, 93.65], dist: 4.0, smooth: [[15.5, 93.9], [15.8, 93.2]] },
+    { coords: [16.15, 93.4], dist: 4.0, smooth: [[16.4, 93.5], [16.5, 92.9]] },
+    { coords: [17, 93], dist: 4.0, smooth: [[17.35, 92.4], [17.4, 92.8]] },
+    { coords: [17.85, 92.5], dist: 4.0, smooth: [[18.3, 92.45], [18.35, 91.8]] },
+    { coords: [18.7, 91.75], dist: 4.0, smooth: [[19, 91.4], [19.4, 91.8]] },
+    { coords: [19.4, 91.15], dist: 4.0, smooth: [[19.83, 91.17], [19.75, 90.65]] },
+    { coords: [20.15, 90.35], dist: 4.0, smooth: [[20.6, 90.35], [20.55, 89.7], [20.7, 90]] },
+    { coords: [20.92, 89.35], dist: 4.0, smooth: [[21.2, 89.35], [21.1, 88.7], [21.55, 88.6]] },
+    { coords: [21.55, 88.25], dist: 4.0, smooth: [[21.9, 87.5], [22.23, 87.2]] },
+    { coords: [22.23, 86.7], dist: 4.0, smooth: [[22.4, 86], [22.2, 85.7], [22.45, 85.4]] },
+    { coords: [22.45, 84.9], dist: 4.0, smooth: [[22.9, 84.3], [22.7, 84], [23, 83.9], [23, 83.2], [23.55, 82.8]] },
+    { coords: [23.88, 81.92], dist: 4.0, smooth: [[25.4, 81.4]] },
+    { coords: [25.9, 81.1], dist: 4.0, smooth: [[26.3, 80.2], [26.25, 79.8], [26.85, 80.3], [27.1, 81.6], [27.6, 81.8], [28.1, 82.9]] },
+    { coords: [28.7, 79.1], dist: 4.0, smooth: [[34, 79.6], [36, 80], [37, 80.5], [38, 81.45]] },
+    { coords: [39.3, 81.3], dist: 4.0 },
   ];
 
+  var polylines = [];
   var polylinePath = '';
   var containerWidth = parseFloat(document.getElementById('map-world').width.baseVal.value);
   var containerHeight = parseFloat(document.getElementById('map-world').height.baseVal.value);
@@ -68,6 +92,11 @@
     point.setAttributeNS(null, 'stroke', 'red');
     point.setAttributeNS(null, 'stroke-width', 1);
     point.setAttributeNS(null, 'fill', 'red');
+
+    if (typeof points[i].breakpoint !== 'undefined') {
+      polylines.push(polylinePath);
+      polylinePath = '';
+    }
 
     polylinePath += (containerWidth * (points[i].coords[0] / 100));
     polylinePath += ',';
@@ -86,13 +115,17 @@
     document.getElementById('map-world').appendChild(point);
   }
 
-  var polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-  polyline.setAttributeNS(null, 'points', polylinePath);
-  polyline.setAttributeNS(null, 'stroke', 'red');
-  polyline.setAttributeNS(null, 'stroke-width', 1);
-  polyline.setAttributeNS(null, 'fill', 'none');
+  polylines.push(polylinePath);
 
-  document.getElementById('map-world').appendChild(polyline);
+  for (var i = 0; i < polylines.length; i++) {
+    var polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+    polyline.setAttributeNS(null, 'points', polylines[i]);
+    polyline.setAttributeNS(null, 'stroke', 'red');
+    polyline.setAttributeNS(null, 'stroke-width', 1);
+    polyline.setAttributeNS(null, 'fill', 'none');
+
+    document.getElementById('map-world').appendChild(polyline);
+  }
 
   drawPosition(0); //2058
 
@@ -233,13 +266,13 @@
     var sliderInfo = document.getElementById('map-test-slider-info');
     var sliderValue = parseInt(slider.value);
 
-    if (sliderValue + 240 <= 899872) slider.value = sliderValue + 240;
-    else slider.value = 899872;
+    if (sliderValue + 240 <= 2191881) slider.value = sliderValue + 240;
+    else slider.value = 2191881;
 
     sliderInfo.innerText = slider.value + ' kroků';
     drawPosition(slider.value);
 
-    if (parseInt(slider.value) < 899872) setTimeout(animateSlider, 1);
+    if (parseInt(slider.value) < 2191881) setTimeout(animateSlider, 1);
     else document.getElementById('map-test-auto').innerText = '▶';
   }
 })();
