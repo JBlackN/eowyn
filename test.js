@@ -13,7 +13,7 @@
   });
 
   points = [
-    // Bag End to Rivendell
+    // Bag End to Rivendell (397 miles)
     { coords: [6.6, 23.75], dist: 0.0, smooth: [[6.95, 25.5], [8, 25.9], [9, 25.8]] },
     { coords: [9.85, 25.45], dist: 11.0 },
     { coords: [12.045, 24.5], dist: 12.0 },
@@ -53,7 +53,7 @@
     { coords: [82.8, 22.1], dist: 13.0, smooth: [[83.9, 20], [85, 19.8], [85.9, 18.4], [87.25, 18.75]] },
     { coords: [87.25, 19.2], dist: 16.0, smooth: [[87.5, 18.9], [88, 19.4], [88.5, 19.2], [89.8, 17]] },
     { coords: [91.28, 15.18], dist: 8.0 },
-    // Rivendell to Erebor
+    // Rivendell to Erebor (555 miles)
     { coords: [9.05, 97.7], dist: 0.0, smooth: [[9.4, 97]], breakpoint: true },
     { coords: [9.25, 96.7], dist: 4.0, smooth: [[9.7, 96.7], [9.65, 96.1]] },
     { coords: [10.15, 95.75], dist: 4.0, smooth: [[10.3, 96.1], [10.5, 95.35]] },
@@ -73,10 +73,50 @@
     { coords: [21.55, 88.25], dist: 4.0, smooth: [[21.9, 87.5], [22.23, 87.2]] },
     { coords: [22.23, 86.7], dist: 4.0, smooth: [[22.4, 86], [22.2, 85.7], [22.45, 85.4]] },
     { coords: [22.45, 84.9], dist: 4.0, smooth: [[22.9, 84.3], [22.7, 84], [23, 83.9], [23, 83.2], [23.55, 82.8]] },
-    { coords: [23.88, 81.92], dist: 4.0, smooth: [[25.4, 81.4]] },
-    { coords: [25.9, 81.1], dist: 4.0, smooth: [[26.3, 80.2], [26.25, 79.8], [26.85, 80.3], [27.1, 81.6], [27.6, 81.8], [28.1, 82.9]] },
-    { coords: [28.7, 79.1], dist: 4.0, smooth: [[34, 79.6], [36, 80], [37, 80.5], [38, 81.45]] },
-    { coords: [39.3, 81.3], dist: 4.0 },
+    { coords: [23.88, 81.92], dist: 26.0, smooth: [[25.4, 81.4]] },
+    { coords: [25.9, 81.1], dist: 11.0, smooth: [[26.3, 80.2], [26.25, 79.8], [26.85, 80.3], [27.1, 81.6], [27.6, 81.8], [28.1, 82.9]] },
+    { coords: [28.7, 79.1], dist: 41.0, smooth: [[34, 79.6], [36, 80], [37, 80.5], [38, 81.45]] },
+    { coords: [39.3, 81.3], dist: 58.0, smooth: [[39.7, 80.2], [39.85, 79.4]] },
+    { coords: [39.83, 77.87], dist: 9.0, smooth: [[39.4, 75]] },
+    { coords: [38.5, 71.4], dist: 20.0, smooth: [[37.1, 66]] },
+    { coords: [36.6, 63.6], dist: 25.0, smooth: [[36.35, 61.5], [36.45, 60], [36.8, 58.2], [37.3, 57.45]] },
+    { coords: [37.35, 57.65], dist: 18.0, smooth: [[37.4, 57.35], [38.5, 57]] },
+    { coords: [38.6, 57.1], dist: 8.0, smooth: [[38.8, 57]] },
+    { coords: [40.15, 57.35], dist: 7.0 },
+    { coords: [41.74, 57.95], dist: 7.0 },
+    { coords: [43.3, 58.65], dist: 7.0 },
+    { coords: [45.1, 59.35], dist: 7.0, smooth: [[45.2, 59.45], [46.45, 59.8]] },
+    { coords: [46.55, 59.75], dist: 7.0, smooth: [[47.3, 60]] },
+    { coords: [47.8, 60.3], dist: 7.0 },
+    { coords: [49.25, 60.9], dist: 7.0, smooth: [[49.7, 61.6]] },
+    { coords: [50.15, 61.7], dist: 7.0 },
+    { coords: [51.8, 62.25], dist: 7.0 },
+    { coords: [53.4, 62.8], dist: 7.0 },
+    { coords: [54.97, 63.25], dist: 7.0 },
+    { coords: [56.45, 63.5], dist: 7.0 },
+    { coords: [57.88, 63.75], dist: 7.0 },
+    { coords: [59.2, 63.97], dist: 7.0 },
+    { coords: [60.63, 63.75], dist: 7.0 },
+    { coords: [62.12, 63.45], dist: 7.0 },
+    { coords: [63.59, 63.19], dist: 7.0 },
+    { coords: [65.1, 62.78], dist: 7.0 },
+    { coords: [66.35, 62.1], dist: 7.0 },
+    { coords: [67.7, 61.55], dist: 5.0 },
+    { coords: [68.95, 60.85], dist: 6.0 },
+    { coords: [70.3, 60.1], dist: 6.0 },
+    { coords: [71.65, 59.25], dist: 6.0 },
+    { coords: [73, 58.25], dist: 6.0 },
+    { coords: [74.4, 57.1], dist: 6.0, smooth: [[75.05, 56.4], [75.2, 56], [75.3, 56.2], [75.5, 55.8]] },
+    { coords: [75.9, 55.8], dist: 7.0, smooth: [[76.4, 55.5], [76.1, 55.3]] },
+    { coords: [76.38, 54.75], dist: 4.0, smooth: [[76.7, 54.2]] },
+    { coords: [76.85, 53.25], dist: 7.0, smooth: [[77.2, 53.8], [79.45, 54.5]] },
+    { coords: [79.7, 54.25], dist: 14.0, smooth: [[80, 54.7], [83, 55.5], [86, 57]] },
+    { coords: [86.47, 56.68], dist: 32.0, smooth: [[86.9, 56]] },
+    { coords: [86.97, 55.2], dist: 5.0 },
+    { coords: [87.25, 53.6], dist: 5.0, smooth: [[87.35, 52.6]] },
+    { coords: [87, 52.15], dist: 5.0 },
+    { coords: [85.2, 49.3], dist: 13.0, smooth: [[84.5, 48.4], [84.44, 48], [84.55, 47.55]] },
+    { coords: [85.2, 47.2], dist: 7.0 },
   ];
 
   var polylines = [];
@@ -266,13 +306,13 @@
     var sliderInfo = document.getElementById('map-test-slider-info');
     var sliderValue = parseInt(slider.value);
 
-    if (sliderValue + 240 <= 2191881) slider.value = sliderValue + 240;
-    else slider.value = 2191881;
+    if (sliderValue + 480 <= 2157880) slider.value = sliderValue + 480;
+    else slider.value = 2157880;
 
     sliderInfo.innerText = slider.value + ' kroků';
     drawPosition(slider.value);
 
-    if (parseInt(slider.value) < 2191881) setTimeout(animateSlider, 1);
+    if (parseInt(slider.value) < 2157880) setTimeout(animateSlider, 1);
     else document.getElementById('map-test-auto').innerText = '▶';
   }
 })();
