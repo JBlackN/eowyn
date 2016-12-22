@@ -1,0 +1,14 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+#map-world {
+  width: 100vw;
+  height: calc(100vw / 1.5781167806418);
+  background-image: url('./maps/path-small.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
