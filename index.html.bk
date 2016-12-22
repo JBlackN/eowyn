@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+  <head>
+  </head>
+  <body>
+    <p id="test"></p>
+    <script type="text/javascript" src="./fb.js"></script>
+  </body>
+</html>
