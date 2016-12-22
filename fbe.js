@@ -352,6 +352,7 @@
 
     step *= multiplier;
 
-    if (initial <= steps) setTimeout(function () { animatePath(initial, step, multiplier, steps); }, 1);
+    if (initial < steps) setTimeout(function () { animatePath(initial, step, multiplier, steps); }, 1);
+    if (initial == steps) drawPosition(initial);
   }
 })();
