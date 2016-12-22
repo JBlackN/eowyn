@@ -365,9 +365,9 @@
     if (steps > 2157880) steps = 2157880;
 
 
-    document.getElementById('info-current-steps').innerText = initial;
-    document.getElementById('info-current-dist-mi').innerText = (((initial * 71) / 100000) * 0.621371192).toFixed(2); // FIXME
-    document.getElementById('info-current-dist-km').innerText = ((initial * 71) / 100000).toFixed(2); // FIXME
+    document.getElementById('info-current-steps').innerText = initial.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    document.getElementById('info-current-dist-mi').innerText = (((initial * 71) / 100000) * 0.621371192).toFixed(2).replace('.', ','); // FIXME
+    document.getElementById('info-current-dist-km').innerText = ((initial * 71) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ','); // FIXME
 
     drawPosition(initial);
 
@@ -378,9 +378,9 @@
 
     if (initial < steps) setTimeout(function () { animatePath(initial, step, multiplier, steps); }, 1);
     if (initial == steps) {
-      document.getElementById('info-current-steps').innerText = initial;
-      document.getElementById('info-current-dist-mi').innerText = (((initial * 71) / 100000) * 0.621371192).toFixed(2); // FIXME
-      document.getElementById('info-current-dist-km').innerText = ((initial * 71) / 100000).toFixed(2); // FIXME
+      document.getElementById('info-current-steps').innerText = initial.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+      document.getElementById('info-current-dist-mi').innerText = (((initial * 71) / 100000) * 0.621371192).toFixed(2).replace('.', ','); // FIXME
+      document.getElementById('info-current-dist-km').innerText = ((initial * 71) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ','); // FIXME
       drawPosition(initial);
     }
   }

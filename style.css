@@ -4,12 +4,28 @@ html, body {
   margin: 0;
   justify-content: center;
   align-items: center;
+  font-family: 'Alegreya Sans', sans-serif;
 }
 
 #info-current, #info-final {
   width: calc((96vw - (85vh / 0.6336666666667)) / 2);
   margin: 1vw;
   text-align: center;
+}
+
+#info-current-header, #info-final-header {
+  font-size: 1.1em;
+  /*text-decoration: underline;*/
+  font-style: italic;
+}
+
+#info-current-steps, #info-current-dist-mi, #info-current-dist-km, #info-final-steps, #info-final-dist-mi, #info-final-dist-km {
+  font-size: 2.5em;
+  font-weight: bold;
+}
+
+#info-current-steps-units, #info-current-dist-units-mi, #info-current-dist-units-km, #info-final-steps-units, #info-final-dist-units-mi, #info-final-dist-units-km {
+  font-variant: small-caps;
 }
 
 #map-world {
