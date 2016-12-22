@@ -107,8 +107,9 @@
     { coords: [85.2, 47.2], dist: 7.0 },
   ];
 
-  // Auth
+  // Auth & API call
   var fitbitAccessToken;
+  var steps;
 
   if (!window.location.hash) {
     window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=***REMOVED***&redirect_uri=https%3A%2F%2F***REMOVED***%2F&scope=activity%20location%20profile%20settings%20social&expires_in=600');
@@ -138,7 +139,7 @@
   }
 
   var processSteps = function(data) {
-    var steps = parseInt(data.lifetime.total.steps);
+    steps = parseInt(data.lifetime.total.steps);
     steps = steps <= 2157880 ? steps : 2157880;
     drawPaths(points);
     animatePath(0, Math.round(steps / 500), 1, steps);
@@ -159,6 +160,24 @@
   .catch(function(error) {
     console.log(error);
   });
+
+  //
+  // Setup etc.
+  //
+
+  window.addEventListener('resize', function() {
+    clearMap();
+    drawPaths(points);
+    drawPosition(steps);
+  });
+
+  // 
+  // Functions
+  //
+
+  function clearMap() {
+    document.getElementById('map-world').innerHTML = '';
+  }
 
   function drawPaths(points) {
     var polylines = [];
