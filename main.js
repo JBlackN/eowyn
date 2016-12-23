@@ -104,7 +104,7 @@
     { coords: [87.25, 53.6], dist: 5.0, smooth: [[87.35, 52.6]] },
     { coords: [87, 52.15], dist: 5.0 },
     { coords: [85.2, 49.3], dist: 13.0, smooth: [[84.5, 48.4], [84.44, 48], [84.55, 47.55]] },
-    { coords: [85.2, 47.2], dist: 7.0 },
+    { coords: [85.2, 47.2], dist: 12.0 },
   ];
 
   itinerary = [
@@ -223,21 +223,61 @@
     { dist: 4, cdist: 526, day: 57, text: 'Společnost se sesunula na úpatí svahu a vyrazila na východ do borovicového lesa.' },
     { dist: 1, cdist: 527, day: 57, text: 'Společnost dorazila k pasece. Slyšeli vlky a vyšplhali na stromy. Ocitli se pod útokem vrrků.' },
     { dist: 8, cdist: 535, day: 57, text: 'Orli zachránili společnost. Odnesli je na orlí hnízdo.' },
-    { dist: 12, cdist: 547, day: 57, text: 'Společnost letěla na hřbetech orlů, kteří je dopravili na Skalbal.' },
-    { dist: 52, cdist: 599, day: 58, text: 'Společnost dorazila k Meddědovu obydlí.' },
-    /*{ dist: 6, cdist: 605, day: 58, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },
-    { dist: 4, cdist: 401, day: 39, text: '' },*/
+    { dist: 12, cdist: 547, day: 57, text: 'Společnost letěla na hřbetech orlů, kteří je dopravili na Skalbal.' }, // Days may be off after this point
+    { dist: 52, cdist: 599, day: 58, text: 'Společnost dorazila k Meddědovu obydlí, kde si odpočinula několik dní. Na cestu (k severu) se opět vydali odpoledne na vypůjčených ponících.' },
+    { dist: 6, cdist: 605, day: 59, text: 'Společnost pokračovala v cestě na sever.' },
+    { dist: 9, cdist: 614, day: 60, text: 'Společnost se utábořila a ráno pokračovala v cestě skrz pastviny na západ od Temného hvozdu.' },
+    { dist: 20, cdist: 634, day: 61, text: 'Společnost pokračovala v cestě na sever v mlze. Bilbo zahlédl Medděda. Pokračovali pod svitem měsíce.' },
+    { dist: 25, cdist: 659, day: 62, text: 'Společnost se opět vydala na cestu před úsvitem. Krajina se začala svažovat do kopce, jak se blížili k Temnému hvozdu. Odpoledne dorazili ke stromům.' },
+    { dist: 18, cdist: 677, day: 63, text: 'Společnost se utábořila. Příští den je Gandalf varoval, aby neopouštěli lesní stezku. Poté odjel a vzal s sebou poníky zpět k Meddědovi. Společnost vstoupila do Temného hvozdu.' },
+    { dist: 8, cdist: 685, day: 39, text: 'Společnost přečkala první noc v lese. Pokračovali po stezce do hlubin Temného hvozdu.' },
+    { dist: 7, cdist: 692, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 699, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 706, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 713, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 720, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 727, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 734, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 741, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 748, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 755, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 762, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 769, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 776, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 783, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 790, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 797, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 804, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 811, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 7, cdist: 818, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 2, cdist: 820, day: 39, text: 'Společnost po stezce dorazila k Začarované řece, kterou překročili na lodičce. Bombur spadl do vody a okamžitě usnul. Trpaslíci ho museli nést.' },
+    { dist: 3, cdist: 823, day: 39, text: 'Společnost se utábořila a ráno pokračovala po stezce v Temném hvozdu.' },
+    { dist: 6, cdist: 829, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 6, cdist: 835, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 6, cdist: 841, day: 39, text: 'Společnost procházela většinu dne otevřenějším prostranstvím pokrytým buky.' },
+    { dist: 6, cdist: 847, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu. Bilbo vylezl na strom, ale neviděl okolo nic než stromy. Nacházeli se na dně širokého údolí.' },
+    { dist: 4, cdist: 851, day: 39, text: 'Společnost pokračovala po stezce v Temném hvozdu.' },
+    { dist: 2, cdist: 853, day: 39, text: 'Společnost se utábořila. K večeři snědli poslední zásoby jídla. Ráno se Bombur probudil. Pršelo celý den. Nikde žádné jídlo' },
+    { dist: 6, cdist: 859, day: 39, text: 'Společnost se chystala utábořit, když zahlédli oheň a opustili stezku. Dorazili k prvnímu elfskému ohni a okolo nich všechno zhaslo. Zběsile se hledali.' },
+    { dist: 0.5, cdist: 859.5, day: 39, text: 'Společnost dorazila k druhému elfskému ohni. Opět se ocitli ve tmě, ale tentokrát zůstali spolu.' },
+    { dist: 0.5, cdist: 860, day: 39, text: 'Před úsvitem zahlédli třetí oheň elfů. Světla opět zhasla a Thorin byl zajat elfy. Ostatní trpaslíci byli polapeni pavouky. Přehlédnutý Bilbo zabil pavouka a omdlel.' },
+    { dist: 0.5, cdist: 860.5, day: 39, text: 'Bilbo se probudil a pojmenoval svůj meč: Žihadlo. Našel trpaslíky zamotané v sítích a osvobodil je.' },
+    { dist: 1.5, cdist: 862, day: 39, text: 'Bilbo se snažil odlákat pavouky.' },
+    { dist: 1, cdist: 863, day: 39, text: 'Pavouci se po dalším boji s trpaslíky vzdali.' },
+    { dist: 1, cdist: 864, day: 39, text: 'Společnost se utábořila. Celý následující den se prodírali lesem. Nakonec byli obklíčeni elfy a vzdali se. Bilbo použil prsten a zmizel.' },
+    { dist: 5, cdist: 869, day: 39, text: 'Trpaslíci byli uvězněni v jeskyních elfského krále Thranduila. Bilbo je sledoval.' },
+    { dist: 2, cdist: 871, day: 39, text: 'Společnost uprchla z jeskyní v sudech po Lesní řece. Propluli východním okrajem Temného hvozdu.' },
+    { dist: 2, cdist: 873, day: 39, text: 'Společnost pokračovala v plavbě po Lesní řece. Za soumraku dopluli k chýším elfů. Trpaslíci byli stále v sudech a Bilbo se s prstenem skrýval poblíž.' },
+    { dist: 12, cdist: 885, day: 39, text: 'Elfové svázáním sudů postavili vor a vypluli po řece k Jezernímu městu. Bilbo plul s nimi neviditelný.' },
+    { dist: 10, cdist: 895, day: 39, text: 'Společnost plula po lesní řece. Proplouvali bažinatou oblastí. Bilbo spatřil Osamělou horu.' },
+    { dist: 20, cdist: 915, day: 39, text: 'Společnost vyplula z oblasti bažin a pokračovala dál po lesní řece.' },
+    { dist: 2, cdist: 917, day: 39, text: 'Společnost po západu slunce doplula do Jezerního města. Bilbo osvobodil trpaslíky a společně vstoupili do města, kde strávili několik týdnů. Thorin žádal o zásoby. Opustili město ve třech loďkách.' },
+    { dist: 5, cdist: 922, day: 39, text: 'Společnost se utábořila u ústí Bystré řeky. Ráno veslovali dál do kopce a proti proudu.' },
+    { dist: 5, cdist: 927, day: 39, text: 'Společnost se utábořila na noc. Ráno pokračovali v plavbě a strávili třetí den v loďkách.' },
+    { dist: 5, cdist: 932, day: 39, text: 'Společnost se utábořila na západním břehu řeky, kde na ně čekali poníci a zásoby. Pokračovali k severozápadu na ponících a dorazili ke Šmakově dračí poušti.' },
+    { dist: 5, cdist: 937, day: 39, text: 'Společnost se utábořila na jižním okraji západního výběžku Osamělé hory.' },
+    { dist: 8, cdist: 945, day: 39, text: 'Bilbo, Fili, Kili a Balin se vydali na průzkum k Bystré řece a k Přední bráně Ereboru. Společnost se přesunula do užšího údolí na západní straně hory.' },
+    { dist: 12, cdist: 956.8, day: 39, text: 'Bilbo, Fili a Kili našli tajné dveře.' },
   ];
 
   // Auth & API call
@@ -273,9 +313,10 @@
 
   var processSteps = function(data) {
     steps = parseInt(data.lifetime.total.steps);
-    steps = steps <= 2157880 ? steps : 2157880;
+steps = 50000000000000; // FIXME: Delete
+    steps = steps <= 2169214 ? steps : 2169214;
     drawPaths(points);
-    animatePath(0, Math.round(steps / 500), 1, steps);
+    animatePath(0, Math.round(steps / 300000), 1, steps); // FIXME: steps / 50
     //drawPosition(steps);
   };
 
@@ -495,14 +536,15 @@
   }
 
   function animatePath(initial, step, multiplier, steps) {
-    if (steps > 2157880) steps = 2157880;
+    if (steps > 2169214) steps = 2169214;
 
 
     document.getElementById('info-current-steps').innerText = initial.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     document.getElementById('info-current-dist-mi').innerText = (((initial * 71) / 100000) * 0.621371192).toFixed(2).replace('.', ','); // FIXME
     document.getElementById('info-current-dist-km').innerText = ((initial * 71) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ','); // FIXME
 
-    /*var distanceKm = (initial * 71) / 100000;
+    // FIXME: Comment this
+    var distanceKm = (initial * 71) / 100000;
     var distanceMi = distanceKm * 0.621371192;
     for (var i = 0; i < itinerary.length; i++) {
       if (itinerary[i].cdist <= distanceMi) {
@@ -512,7 +554,7 @@
         document.getElementById('info-itinerary').innerText = itinerary[i - 1 >= 0 ? i - 1 : 0].text;
         break;
       }
-    }*/
+    }
 
     drawPosition(initial);
 
