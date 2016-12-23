@@ -1,10 +1,39 @@
 html, body {
-  display: flex;
   height: 100%;
   margin: 0;
+  font-family: 'Alegreya Sans', sans-serif;
+}
+
+#header {
+  width: 100vw;
+  height: 4vh;
+}
+
+#map-info-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 85vh;
   justify-content: center;
   align-items: center;
-  font-family: 'Alegreya Sans', sans-serif;
+}
+
+#itinerary-wrapper {
+  display: flex;
+  width: 100vw;
+  height: 11vh;
+  box-sizing: border-box;
+  padding: 1em;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Alegreya', serif;
+}
+
+#info-itinerary {
+  width: calc(70vh / 0.6336666666667);
+  font-size: 1.05em;
+  font-style: italic;
+  text-align: center;
 }
 
 #info-current, #info-final {
@@ -25,12 +54,12 @@ html, body {
 }
 
 #info-current-steps-units, #info-current-dist-units-mi, #info-current-dist-units-km, #info-final-steps-units, #info-final-dist-units-mi, #info-final-dist-units-km {
-  font-variant: small-caps;
+  font-family: 'Alegreya Sans SC', sans-serif;
 }
 
 #map-world {
-  position: relative;
-  bottom: 1.8em;
+  /*position: relative;
+  bottom: 1.8em;*/
   width: calc(85vh / 0.6336666666667);
   height: 85vh;
   background-image: url('./maps/path-small.png');

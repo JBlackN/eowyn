@@ -4,29 +4,37 @@
     <meta charset="utf-8">
     <title>Eowyn | PA</title>
     <script type="text/javascript" src="./auth.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
+    <!--<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">-->
+    <script src="https://use.fontawesome.com/cbfd837656.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:400,400i,700,700i|Alegreya+Sans:400,400i,700,700i|Alegreya:400,400i,700,700i&amp;subset=latin-ext" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-    <div id="info-current">
-      <span id="info-current-header">Aktuálně</span><br>
-      <span id="info-current-steps">0</span><br>
-      <span id="info-current-steps-units">kroků</span><br>
-      <span id="info-current-dist-mi">0</span><br>
-      <span id="info-current-dist-units-mi">mil</span><br>
-      <span id="info-current-dist-km">0</span><br>
-      <span id="info-current-dist-units-km">kilometrů</span>
+    <div id="header"></div>
+    <div id="map-info-wrapper">
+      <div id="info-current">
+        <span id="info-current-header">Aktuálně</span><br>
+        <span id="info-current-steps">0</span><br>
+        <span id="info-current-steps-units">kroků</span><br>
+        <span id="info-current-dist-mi">0</span><br>
+        <span id="info-current-dist-units-mi">mil</span><br>
+        <span id="info-current-dist-km">0</span><br>
+        <span id="info-current-dist-units-km">kilometrů</span>
+      </div>
+      <svg class="map" id="map-world"><!-- width="60em" height="38.02em">-->
+      </svg>
+      <div id="info-final">
+        <span id="info-final-header">Celkem</span><br>
+        <span id="info-final-steps">2 157 880</span><br>
+        <span id="info-final-steps-units">kroků</span><br>
+        <span id="info-final-dist-mi">952</span><br>
+        <span id="info-final-dist-units-mi">mil</span><br>
+        <span id="info-final-dist-km">1 532,09</span><br>
+        <span id="info-final-dist-units-km">kilometrů</span>
+      </div>
     </div>
-    <svg class="map" id="map-world"><!-- width="60em" height="38.02em">-->
-    </svg>
-    <div id="info-final">
-      <span id="info-final-header">Celkem</span><br>
-      <span id="info-final-steps">2 157 880</span><br>
-      <span id="info-final-steps-units">kroků</span><br>
-      <span id="info-final-dist-mi">952</span><br>
-      <span id="info-final-dist-units-mi">mil</span><br>
-      <span id="info-final-dist-km">1 532,09</span><br>
-      <span id="info-final-dist-units-km">kilometrů</span>
+    <div id="itinerary-wrapper">
+      <p id="info-itinerary"><i class="fa fa-spinner fa-spin"></i></p>
     </div>
 
     <script type="text/javascript" src='./main.js'></script>

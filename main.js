@@ -452,6 +452,18 @@
     document.getElementById('info-current-dist-mi').innerText = (((initial * 71) / 100000) * 0.621371192).toFixed(2).replace('.', ','); // FIXME
     document.getElementById('info-current-dist-km').innerText = ((initial * 71) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ','); // FIXME
 
+    /*var distanceKm = (initial * 71) / 100000;
+    var distanceMi = distanceKm * 0.621371192;
+    for (var i = 0; i < itinerary.length; i++) {
+      if (itinerary[i].cdist <= distanceMi) {
+        continue;
+      }
+      else {
+        document.getElementById('info-itinerary').innerText = itinerary[i - 1 >= 0 ? i - 1 : 0].text;
+        break;
+      }
+    }*/
+
     drawPosition(initial);
 
     if (initial + step <= steps) initial += step;
@@ -464,6 +476,21 @@
       document.getElementById('info-current-steps').innerText = initial.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
       document.getElementById('info-current-dist-mi').innerText = (((initial * 71) / 100000) * 0.621371192).toFixed(2).replace('.', ','); // FIXME
       document.getElementById('info-current-dist-km').innerText = ((initial * 71) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ','); // FIXME
+      var distanceKm = (initial * 71) / 100000;
+      var distanceMi = distanceKm * 0.621371192;
+      var flag = false;
+      document.getElementById('info-itinerary').innerHTML = '';
+      for (var i = 0; i < itinerary.length; i++) {
+        if (itinerary[i].cdist <= distanceMi) {
+          continue;
+        }
+        else {
+          document.getElementById('info-itinerary').innerText = itinerary[i - 1 >= 0 ? i - 1 : 0].text;
+          flag = true;
+          break;
+        }
+      }
+      if (!flag) document.getElementById('info-itinerary').innerText = itinerary[itinerary.length - 1].text;
       drawPosition(initial);
     }
   }
