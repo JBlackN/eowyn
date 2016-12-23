@@ -283,6 +283,8 @@
   // Auth & API call
   var fitbitAccessToken;
   var steps;
+  var stride;
+  var totalSteps;
 
   if (!window.location.hash) {
     window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=***REMOVED***&redirect_uri=https%3A%2F%2F***REMOVED***%2F&scope=activity%20location%20profile%20settings%20social&expires_in=600');
@@ -295,7 +297,7 @@
     );
 
     fitbitAccessToken = fragmentQueryParameters.access_token;
-  }
+  };
 
   var processResponse = function(res) {
     if (!res.ok) {
@@ -309,19 +311,41 @@
     else {
       throw new Error('JSON expected but received ' + contentType);
     }
-  }
+  };
+
+  var processStride = function(data) {
+    stride = parseFloat(data.user.strideLengthWalking);
+    totalSteps = parseInt(((957 / 0.621371192) * 100000) / stride)
+    document.getElementById('info-final-steps').innerText = totalSteps.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  };
+
+  var requestSteps = function() {
+    return fetch(
+      'https://api.fitbit.com/1/user/-/activities.json',
+      {
+        headers: new Headers({
+          'Authorization': 'Bearer ' + fitbitAccessToken
+        }),
+        mode: 'cors',
+        method: 'GET'
+      }
+    );
+  };
 
   var processSteps = function(data) {
     steps = parseInt(data.lifetime.total.steps);
 steps = 50000000000000; // FIXME: Delete
-    steps = steps <= 2169214 ? steps : 2169214;
+    steps = steps <= totalSteps ? steps : totalSteps;
+  };
+
+  var appRun = function() {
     drawPaths(points);
-    animatePath(0, Math.round(steps / 300000), 1, steps); // FIXME: steps / 50
+    animatePath(0, Math.round(steps / 100000), 1, steps); // FIXME: steps / 500
     //drawPosition(steps);
   };
 
   fetch(
-    'https://api.fitbit.com/1/user/-/activities.json',
+    'https://api.fitbit.com/1/user/-/profile.json',
     {
       headers: new Headers({
         'Authorization': 'Bearer ' + fitbitAccessToken
@@ -330,7 +354,11 @@ steps = 50000000000000; // FIXME: Delete
       method: 'GET'
     }
   ).then(processResponse)
+  .then(processStride)
+  .then(requestSteps)
+  .then(processResponse)
   .then(processSteps)
+  .then(appRun)
   .catch(function(error) {
     console.log(error);
   });
@@ -404,7 +432,7 @@ steps = 50000000000000; // FIXME: Delete
   }
 
   function drawPosition(steps) {
-    var distanceKm = (steps * 71) / 100000;
+    var distanceKm = (steps * stride) / 100000;
     var distanceMi = distanceKm * 0.621371192;
     var cumulativeDist = 0.0;
     var markerDisplayed = false;
@@ -536,15 +564,15 @@ steps = 50000000000000; // FIXME: Delete
   }
 
   function animatePath(initial, step, multiplier, steps) {
-    if (steps > 2169214) steps = 2169214;
+    if (steps > totalSteps) steps = totalSteps;
 
 
     document.getElementById('info-current-steps').innerText = initial.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-    document.getElementById('info-current-dist-mi').innerText = (((initial * 71) / 100000) * 0.621371192).toFixed(2).replace('.', ','); // FIXME
-    document.getElementById('info-current-dist-km').innerText = ((initial * 71) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ','); // FIXME
+    document.getElementById('info-current-dist-mi').innerText = (((initial * stride) / 100000) * 0.621371192).toFixed(2).replace('.', ',');
+    document.getElementById('info-current-dist-km').innerText = ((initial * stride) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ',');
 
     // FIXME: Comment this
-    var distanceKm = (initial * 71) / 100000;
+    var distanceKm = (initial * stride) / 100000;
     var distanceMi = distanceKm * 0.621371192;
     for (var i = 0; i < itinerary.length; i++) {
       if (itinerary[i].cdist <= distanceMi) {
@@ -566,9 +594,9 @@ steps = 50000000000000; // FIXME: Delete
     if (initial < steps) setTimeout(function () { animatePath(initial, step, multiplier, steps); }, 1);
     if (initial == steps) {
       document.getElementById('info-current-steps').innerText = initial.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-      document.getElementById('info-current-dist-mi').innerText = (((initial * 71) / 100000) * 0.621371192).toFixed(2).replace('.', ','); // FIXME
-      document.getElementById('info-current-dist-km').innerText = ((initial * 71) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ','); // FIXME
-      var distanceKm = (initial * 71) / 100000;
+      document.getElementById('info-current-dist-mi').innerText = (((initial * stride) / 100000) * 0.621371192).toFixed(2).replace('.', ',');
+      document.getElementById('info-current-dist-km').innerText = ((initial * stride) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ',');
+      var distanceKm = (initial * stride) / 100000;
       var distanceMi = distanceKm * 0.621371192;
       var flag = false;
       document.getElementById('info-itinerary').innerHTML = '';
