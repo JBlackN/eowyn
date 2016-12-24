@@ -335,13 +335,12 @@
 
   var processSteps = function(data) {
     steps = parseInt(data.lifetime.total.steps);
-steps = 50000000000000; // FIXME: Delete
     steps = steps <= totalSteps ? steps : totalSteps;
   };
 
   var appRun = function() {
     drawPaths(points);
-    animatePath(0, Math.round(steps / 5000), 1, steps); // FIXME: steps / 500
+    animatePath(0, Math.round(steps / 500), 1, steps);
     animateMarker(4.0, 6.0, 'up', 0.01);
     //drawPosition(steps);
   };
@@ -592,8 +591,7 @@ steps = 50000000000000; // FIXME: Delete
     document.getElementById('info-current-dist-mi').innerText = (((initial * stride) / 100000) * 0.621371192).toFixed(2).replace('.', ',');
     document.getElementById('info-current-dist-km').innerText = ((initial * stride) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ',');
 
-    // FIXME: Comment this
-    var distanceKm = (initial * stride) / 100000;
+    /*var distanceKm = (initial * stride) / 100000;
     var distanceMi = distanceKm * 0.621371192;
     for (var i = 0; i < itinerary.length; i++) {
       if (itinerary[i].cdist <= distanceMi) {
@@ -603,7 +601,7 @@ steps = 50000000000000; // FIXME: Delete
         document.getElementById('info-itinerary').innerText = itinerary[i - 1 >= 0 ? i - 1 : 0].text;
         break;
       }
-    }
+    }*/
 
     drawPosition(initial);
 
