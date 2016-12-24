@@ -340,7 +340,28 @@
 
   var appRun = function() {
     drawPaths(points);
-    animatePath(0, Math.round(steps / 500), 1, steps);
+    if (Math.round(steps / 500) == 0) {
+      drawPosition(steps);
+      document.getElementById('info-current-steps').innerText = steps.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+      document.getElementById('info-current-dist-mi').innerText = (((steps * stride) / 100000) * 0.621371192).toFixed(2).replace('.', ',');
+      document.getElementById('info-current-dist-km').innerText = ((steps * stride) / 100000).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ' ').replace('.', ',');
+      var distanceKm = (steps * stride) / 100000;
+      var distanceMi = distanceKm * 0.621371192;
+      var flag = false;
+      document.getElementById('info-itinerary').innerHTML = '';
+      for (var i = 0; i < itinerary.length; i++) {
+        if (itinerary[i].cdist <= distanceMi) {
+          continue;
+        }
+        else {
+          document.getElementById('info-itinerary').innerText = itinerary[i - 1 >= 0 ? i - 1 : 0].text;
+          flag = true;
+          break;
+        }
+      }
+      if (!flag) document.getElementById('info-itinerary').innerText = itinerary[itinerary.length - 1].text;
+    }
+    else animatePath(0, Math.round(steps / 500), 1, steps);
     animateMarker(4.0, 6.0, 'up', 0.01);
     //drawPosition(steps);
   };
@@ -585,7 +606,6 @@
 
   function animatePath(initial, step, multiplier, steps) {
     if (steps > totalSteps) steps = totalSteps;
-
 
     document.getElementById('info-current-steps').innerText = initial.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
     document.getElementById('info-current-dist-mi').innerText = (((initial * stride) / 100000) * 0.621371192).toFixed(2).replace('.', ',');
