@@ -62,7 +62,7 @@ html, body {
   bottom: 1.8em;*/
   width: calc(85vh / 0.6336666666667);
   height: 85vh;
-  background-image: url('./maps/path-small.png');
+  background-image: url('./maps/path.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
