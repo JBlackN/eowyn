@@ -117,7 +117,7 @@
     { dist: 2, cdist: 11, day: 1, text: 'Společnost se utábořila na noc. Ráno pokračovali volným tempem na východ po Cestě.' },
     { dist: 12, cdist: 23, day: 2, text: 'Žabovřesky. Společnost přenocovala v hospodě U Plovoucí klády a ráno pokračovala na východ po Cestě volným tempem.' },
     { dist: 11, cdist: 34, day: 3, text: 'Přes pole na jihu byly vidět stromy Zálesí. Společnost se utábořila a ráno pokračovala na východ po Cestě volným tempem.' },
-    { dist: 11, cdist: 45, day: 4, text: 'Společnost dorazila k mostu přes Brandyvínu a strávila noc v hospodě U Mostu. Ráno překročili Brandyvínu. Minuli cestu vedoucí na jih k Rádovsku a prošli okolo Vysokého křoví.' },
+    { dist: 11, cdist: 45, day: 4, text: 'Společnost dorazila k mostu přes Brandyvínu a strávila noc v hospodě U Mostu. Ráno překročili Brandyvínu. Minuli cestu vedoucí na jih k Rádovsku a projeli okolo Vysokého křoví.' },
     { dist: 10, cdist: 55, day: 5, text: 'Společnost se utábořila na noc. Ráno pokračovali na východ po Cestě. Na jihu se vynořil okraj Starého Hvozdu.' },
     { dist: 6, cdist: 61, day: 6, text: 'Společnost pokračovala na východ po Cestě. Od jihu se k nim Starý Hvozd stále víc přibližoval.' },
     { dist: 4, cdist: 65, day: 6, text: 'Společnost se utábořila na noc vedle Cesty. Ráno pokračovali na východ a projížděli stále řídčeji obydlenou oblastí.' },
@@ -152,7 +152,7 @@
     { dist: 5, cdist: 210, day: 20, text: 'Společnost dorazila k posledním kopcům pod Větrovem a utábořila se na jejich úpatí. Ráno pokračovali po Cestě na severovýchod a pomalu klesali směrem k Pustinám. Stav Velké východní cesty se začal zhoršovat.' },
     { dist: 5, cdist: 215, day: 21, text: 'Jižně od projíždějící společnosti se rozkládala drsná krajina porostlá bodláčím.' },
     { dist: 4, cdist: 219, day: 21, text: 'Společnost se utábořila za teplého počasí a čisté oblohy. Ráno pokračovali dál na severovýchod. Větrov byl stále viditelný přímo za nimi.' },
-    { dist: 9, cdist: 228, day: 22, text: 'Společnost se utábořila na noc a ráno pokračovali dále po Velké východní cestě.' },
+    { dist: 9, cdist: 228, day: 22, text: 'Společnost se utábořila na noc a ráno pokračovali dál po Velké východní cestě.' },
     { dist: 9, cdist: 237, day: 23, text: 'Cesta se zhoršovala stále více. Větrov za společností nyní vypadal menší.' },
     { dist: 5, cdist: 242, day: 24, text: 'Společnost se utábořila a ráno pokračovala po Cestě, která se stáčela více na východ. Větrov již nebyl přímo za nimi.' },
     { dist: 4, cdist: 246, day: 24, text: 'Společnost se utábořila a ráno pokračovala dál na východ. Větrovské vrchy byly stále viditelné na západním obzoru.' },
@@ -340,7 +340,7 @@ steps = 50000000000000; // FIXME: Delete
 
   var appRun = function() {
     drawPaths(points);
-    animatePath(0, Math.round(steps / 100000), 1, steps); // FIXME: steps / 500
+    animatePath(95000, Math.round(steps / 300000), 1, steps); // FIXME: steps / 500
     //drawPosition(steps);
   };
 
