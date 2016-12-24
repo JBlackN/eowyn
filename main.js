@@ -341,7 +341,7 @@ steps = 50000000000000; // FIXME: Delete
 
   var appRun = function() {
     drawPaths(points);
-    animatePath(0, Math.round(steps / 25000), 1, steps); // FIXME: steps / 500
+    animatePath(0, Math.round(steps / 5000), 1, steps); // FIXME: steps / 500
     animateMarker(4.0, 6.0, 'up', 0.01);
     //drawPosition(steps);
   };
