@@ -285,6 +285,7 @@
   var steps;
   var stride;
   var totalSteps;
+  var currentMarker = 4.0;
 
   if (!window.location.hash) {
     window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=***REMOVED***&redirect_uri=https%3A%2F%2F***REMOVED***%2F&scope=activity%20location%20profile%20settings%20social&expires_in=600');
@@ -340,7 +341,8 @@ steps = 50000000000000; // FIXME: Delete
 
   var appRun = function() {
     drawPaths(points);
-    animatePath(1810000, Math.round(steps / 300000), 1, steps); // FIXME: steps / 500
+    animatePath(0, Math.round(steps / 25000), 1, steps); // FIXME: steps / 500
+    animateMarker(4.0, 6.0, 'up', 0.01);
     //drawPosition(steps);
   };
 
@@ -392,9 +394,9 @@ steps = 50000000000000; // FIXME: Delete
       point.setAttributeNS(null, 'cx', points[i].coords[0] + '%');
       point.setAttributeNS(null, 'cy', points[i].coords[1] + '%');
       point.setAttributeNS(null, 'r', 2);
-      point.setAttributeNS(null, 'stroke', 'red');
+      point.setAttributeNS(null, 'stroke', '#f90054');
       point.setAttributeNS(null, 'stroke-width', 1);
-      point.setAttributeNS(null, 'fill', 'red');
+      point.setAttributeNS(null, 'fill', '#f90054');
 
       if (typeof points[i].breakpoint !== 'undefined') {
         polylines.push(polylinePath);
@@ -423,7 +425,7 @@ steps = 50000000000000; // FIXME: Delete
     for (var i = 0; i < polylines.length; i++) {
       var polyline = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
       polyline.setAttributeNS(null, 'points', polylines[i]);
-      polyline.setAttributeNS(null, 'stroke', 'red');
+      polyline.setAttributeNS(null, 'stroke', '#f90054');
       polyline.setAttributeNS(null, 'stroke-width', 1);
       polyline.setAttributeNS(null, 'fill', 'none');
 
@@ -551,16 +553,35 @@ steps = 50000000000000; // FIXME: Delete
         marker.setAttributeNS(null, 'id', 'marker');
         marker.setAttributeNS(null, 'cx', markerCoords.x + '%');
         marker.setAttributeNS(null, 'cy', markerCoords.y + '%');
-        marker.setAttributeNS(null, 'r', 4);
-        marker.setAttributeNS(null, 'stroke', 'green');
+        marker.setAttributeNS(null, 'r', currentMarker);
+        marker.setAttributeNS(null, 'stroke', '#479100');
         marker.setAttributeNS(null, 'stroke-width', 1);
-        marker.setAttributeNS(null, 'fill', 'green');
+        marker.setAttributeNS(null, 'fill', '#6ddf00');
 
         document.getElementById('map-world').appendChild(marker);
 
         markerDisplayed = true;
       }
     }
+  }
+
+  function animateMarker(initial, target, direction, step) {
+    marker.setAttributeNS(null, 'r', currentMarker);
+    if (direction == 'up') {
+      if (currentMarker + step <= target) currentMarker += step;
+      else {
+        currentMarker = target;
+        direction = 'down';
+      }
+    }
+    else if (direction == 'down') {
+      if (currentMarker - step >= initial) currentMarker -= step;
+      else {
+        currentMarker = initial;
+        direction = 'up';
+      }
+    }
+    setTimeout(function() { animateMarker(initial, target, direction, step); }, 1);
   }
 
   function animatePath(initial, step, multiplier, steps) {
