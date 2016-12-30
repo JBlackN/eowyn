@@ -1,4 +1,13 @@
 (function() {
+  var maps = {
+    path: [
+      { image: './maps/path.jpg', minDist: 0 }
+    ],
+    regional: [
+      { image: './maps/region-shire.jpg', minDist: 0 },
+      { image: './maps/region-eriador-west.jpg', minDist: 50 },
+    ]
+  };
   // Path map description
   var points = [
     // Bag End to Rivendell (397 miles)
@@ -389,10 +398,51 @@
   // Setup etc.
   //
 
+  // Window resize
   window.addEventListener('resize', function() {
     clearMap();
     drawPaths(points);
     drawPosition(steps);
+  });
+
+  // Map switches
+  var pathMapSwitch = document.getElementById('map-switch-path');
+  var regionalMapSwitch = document.getElementById('map-switch-regional');
+
+  pathMapSwitch.style.color = '#f90054';
+  pathMapSwitch.style.fontWeight = 'bold';
+
+  pathMapSwitch.addEventListener('click', function() {
+    document.getElementById('map-world').style.backgroundImage = 'url("' + maps.path[0].image + '")';
+
+    var switches = document.getElementsByClassName('map-switch');
+    for (var i = 0; i < switches.length; i++) {
+      switches[i].style.color = '#000000';
+      switches[i].style.fontWeight = 'normal';
+    }
+    document.getElementById('map-switch-path').style.color = '#f90054';
+    document.getElementById('map-switch-path').style.fontWeight = 'bold';
+  });
+
+  regionalMapSwitch.addEventListener('click', function() {
+    var distanceKm = (steps * stride) / 100000;
+    var distanceMi = distanceKm * 0.621371192;
+    var index;
+    for (var i = 0; i < maps.regional.length; i++) {
+      if (distanceMi >= maps.regional[i].minDist) {
+        index = i;
+      }
+      else break;
+    }
+    document.getElementById('map-world').style.backgroundImage = 'url("' + maps.regional[index].image + '")';
+
+    var switches = document.getElementsByClassName('map-switch');
+    for (var i = 0; i < switches.length; i++) {
+      switches[i].style.color = '#000000';
+      switches[i].style.fontWeight = 'normal';
+    }
+    document.getElementById('map-switch-regional').style.color = '#f90054';
+    document.getElementById('map-switch-regional').style.fontWeight = 'bold';
   });
 
   // 
