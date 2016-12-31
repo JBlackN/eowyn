@@ -1,15 +1,6 @@
 (function() {
-  var maps = {
-    path: [
-      { image: './maps/path.jpg', minDist: 0 }
-    ],
-    regional: [
-      { image: './maps/region-shire.jpg', minDist: 0 },
-      { image: './maps/region-eriador-west.jpg', minDist: 50 },
-    ]
-  };
   // Path map description
-  var points = [
+  var pathPoints = [
     // Bag End to Rivendell (397 miles)
     { coords: [6.6, 23.75], dist: 0.0, smooth: [[6.95, 25.5], [8, 25.9], [9, 25.8]] },
     { coords: [9.85, 25.45], dist: 11.0 },
@@ -115,6 +106,46 @@
     { coords: [85.2, 49.3], dist: 13.0, smooth: [[84.5, 48.4], [84.44, 48], [84.55, 47.55]] },
     { coords: [85.2, 47.2], dist: 12.0 },
   ];
+
+  var shirePoints = [
+    //{ dist: 0, cdist: 0, day: 1, text: 'Bilbo vyběhl ze Dna pytle na jih, dolů ulicí směrem k Hobitínu.' },
+    //{ dist: 0.5, cdist: 0.5, day: 1, text: 'Bilbo překročil most přes Vodu a dal se na východ po cestě k Povodí.' },
+    //{ dist: 4.5, cdist: 5, day: 1, text: 'Bilbo doběhl k hospodě U Zeleného draka v Povodí. Trpaslíci pro něj měli přichystaného poníka a všichni se vydali ihned na cestu. Čaroděj Gandalf se k nim brzy připojil. Odbočili na jihovýchod po cestě z Povodí. Cesta byla obklopena vysokými břehy porostlými křovím.' },
+    //{ dist: 2, cdist: 7, day: 1, text: 'Společnost dorazila k Velké východní cestě a pokračovala dál na východ.' },
+    //{ dist: 2, cdist: 9,  day: 1, text: 'Společnost projela okolo Tříčtvrtkového kamene.' },
+    //{ dist: 2, cdist: 11, day: 1, text: 'Společnost se utábořila na noc. Ráno pokračovali volným tempem na východ po Cestě.' },
+    //{ dist: 12, cdist: 23, day: 2, text: 'Žabovřesky. Společnost přenocovala v hospodě U Plovoucí klády a ráno pokračovala na východ po Cestě volným tempem.' },
+    //{ dist: 11, cdist: 34, day: 3, text: 'Přes pole na jihu byly vidět stromy Zálesí. Společnost se utábořila a ráno pokračovala na východ po Cestě volným tempem.' },
+    //{ dist: 11, cdist: 45, day: 4, text: 'Společnost dorazila k mostu přes Brandyvínu a strávila noc v hospodě U Mostu. Ráno překročili Brandyvínu. Minuli cestu vedoucí na jih k Rádovsku a projeli okolo Vysokého křoví. Na jihu se vynořil západní okraj Starého Hvozdu.' },
+    //{ dist: 10, cdist: 55, day: 5, text: 'Společnost se utábořila na noc vedle Cesty. Ráno pokračovali na východ. Od jihu se k nim Starý Hvozd stále víc přibližoval.' },
+    //{ dist: 4, cdist: 65, day: 6, text: 'Společnost se utábořila na noc. Ráno minuli východní okraj Starého Hvozdu.' },
+    { coords: [66.8, 51.7], dist: 0.0, smooth: [[67.1, 52.1], [67.8, 52.7], [68.05, 53], [68, 53.2]] },
+    { coords: [67.6, 54.3], dist: 0.5, smooth: [[67.5, 54.8], [68.5, 55.1]] },
+    { coords: [69.15, 55.85], dist: 4.5, smooth: [[69.3, 55.95]] },
+    { coords: [69.5, 57], dist: 2.0 },
+    { coords: [71, 57.45], dist: 2.0 },
+    { coords: [72.5, 57.32], dist: 2.0, smooth: [[74.9, 56.5]] },
+    { coords: [77, 55.3], dist: 12.0, smooth: [[80.45, 55.05]] },
+    { coords: [81.48, 54.64], dist: 11.0, smooth: [[84, 54.9]] },
+    { coords: [86, 54.15], dist: 11.0 },
+    { coords: [90.3, 50.75], dist: 10.0, smooth: [[93.5, 49.1]] },
+    { coords: [95, 48.5], dist: 4.0, smooth: [[96, 48.2]] },
+    { coords: [101, 48.13], dist: 100.0  },
+  ];
+
+  var eriadorWestPoints = [];
+
+  var maps = {
+    path: [
+      { image: './maps/path.jpg', minDist: 0, points: pathPoints }
+    ],
+    regional: [
+      { image: './maps/region-shire.jpg', minDist: 0, points: shirePoints },
+      { image: './maps/region-eriador-west.jpg', minDist: 65, points: eriadorWestPoints },
+    ]
+  };
+
+  var points = maps.path[0].points;
 
   itinerary = [
     // Bag End to Rivendell
@@ -325,7 +356,7 @@
 
   var processStride = function(data) {
     stride = parseFloat(data.user.strideLengthWalking);
-    totalSteps = parseInt(((957 / 0.621371192) * 100000) / stride)
+    totalSteps = parseInt(((957 / 0.621371192) * 100000) / stride);
     document.getElementById('info-final-steps').innerText = totalSteps.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   };
 
@@ -375,7 +406,8 @@
     //drawPosition(steps);
   };
 
-  fetch(
+// FIXME
+  /*fetch(
     'https://api.fitbit.com/1/user/-/profile.json',
     {
       headers: new Headers({
@@ -392,7 +424,11 @@
   .then(appRun)
   .catch(function(error) {
     console.log(error);
-  });
+  });*/
+  stride = 72.06;
+  steps = 140000;
+  totalSteps = ((957 / 0.621371192) * 100000) / stride;
+  appRun();
 
   //
   // Setup etc.
@@ -422,6 +458,11 @@
     }
     document.getElementById('map-switch-path').style.color = '#f90054';
     document.getElementById('map-switch-path').style.fontWeight = 'bold';
+
+    points = maps.path[0].points;
+    clearMap();
+    drawPaths(points);
+    drawPosition(steps);
   });
 
   regionalMapSwitch.addEventListener('click', function() {
@@ -443,6 +484,11 @@
     }
     document.getElementById('map-switch-regional').style.color = '#f90054';
     document.getElementById('map-switch-regional').style.fontWeight = 'bold';
+
+    points = maps.regional[index].points;
+    clearMap();
+    drawPaths(points);
+    drawPosition(steps);
   });
 
   // 
