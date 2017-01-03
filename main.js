@@ -1,6 +1,6 @@
 (function() {
   // Path map description
-  var points = [
+  var pathPoints = [
     // Bag End to Rivendell (397 miles)
     { coords: [6.6, 23.75], dist: 0.0, smooth: [[6.95, 25.5], [8, 25.9], [9, 25.8]] },
     { coords: [9.85, 25.45], dist: 11.0 },
@@ -106,6 +106,73 @@
     { coords: [85.2, 49.3], dist: 13.0, smooth: [[84.5, 48.4], [84.44, 48], [84.55, 47.55]] },
     { coords: [85.2, 47.2], dist: 12.0 },
   ];
+
+  var shirePoints = [
+    { coords: [66.8, 51.7], dist: 0.0, smooth: [[67.1, 52.1], [67.8, 52.7], [68.05, 53], [68, 53.2]] },
+    { coords: [67.6, 54.3], dist: 0.5, smooth: [[67.5, 54.8], [68.5, 55.1]] },
+    { coords: [69.15, 55.85], dist: 4.5, smooth: [[69.3, 55.95]] },
+    { coords: [69.5, 57], dist: 2.0 },
+    { coords: [71, 57.45], dist: 2.0 },
+    { coords: [72.5, 57.32], dist: 2.0, smooth: [[74.9, 56.5]] },
+    { coords: [77, 55.3], dist: 12.0, smooth: [[80.45, 55.05]] },
+    { coords: [81.48, 54.64], dist: 11.0, smooth: [[84, 54.9]] },
+    { coords: [86, 54.15], dist: 11.0 },
+    { coords: [90.3, 50.75], dist: 10.0, smooth: [[93.5, 49.1]] },
+    { coords: [95, 48.5], dist: 10.0, smooth: [[96, 48.2]] },
+    { coords: [101, 48.13], dist: 100.0  },
+  ];
+
+  var eriadorWestPoints = [
+    { coords: [59, 59.8], dist: 0.0, smooth: [[59.5, 61]] },
+    { coords: [60.9, 61.15], dist: 11.0 },
+    { coords: [62.2, 61], dist: 12.0 },
+    { coords: [63.5, 60.75], dist: 11.0 },
+    { coords: [64.95, 60.4], dist: 11.0 },
+    { coords: [66.2, 59.95], dist: 10.0 },
+    { coords: [67.5, 59.15], dist: 10.0 },
+    { coords: [69.3, 58.6], dist: 10.0 },
+    { coords: [70.75, 59.1], dist: 10.0 },
+    { coords: [72, 59.5], dist: 6.0 },
+    { coords: [73.2, 60.3], dist: 10.0 },
+    { coords: [74, 60.8], dist: 12.0 },
+    { coords: [74.9, 61.1], dist: 12.0 },
+    { coords: [75.7, 61.1], dist: 12.0 },
+    { coords: [76.45, 61.2], dist: 12.0 },
+    { coords: [77.3, 61.1], dist: 11.0 },
+    { coords: [78.65, 60.85], dist: 10.0 },
+    { coords: [80.1, 60.5], dist: 10.0 },
+    { coords: [81.4, 59.9], dist: 10.0 },
+    { coords: [82.4, 58.9], dist: 10.0 },
+    { coords: [83.2, 57.9], dist: 10.0 },
+    { coords: [83.9, 57.1], dist: 9.0 },
+    { coords: [84.8, 55.95], dist: 9.0 },
+    { coords: [85.9, 55.1], dist: 9.0 },
+    { coords: [87, 54.6], dist: 9.0 },
+    { coords: [88.2, 54.6], dist: 9.0 },
+    { coords: [89.5, 55.1], dist: 9.0 },
+    { coords: [90.8, 55.55], dist: 9.0 },
+    { coords: [91.8, 55.68], dist: 9.0 },
+    { coords: [92.7, 55.7], dist: 9.0 },
+    { coords: [93.7, 55.8], dist: 9.0 },
+    { coords: [94.25, 56.25], dist: 9.0 },
+    { coords: [94.7, 56.8], dist: 8.0, smooth: [[95.4, 57.7]] },
+    { coords: [97, 57.8], dist: 15.0, smooth:[[97.3, 58.3], [97.1, 59.7], [96.73, 60.45]] },
+    { coords: [97.8, 61.15], dist: 12.0 },
+    { coords: [101, 62], dist: 100.0 },
+  ];
+
+  var maps = {
+    path: [
+      { image: './maps/path.jpg', minDist: 0, points: pathPoints }
+    ],
+    regional: [
+      { image: './maps/region-shire.jpg', minDist: 0, points: shirePoints },
+      { image: './maps/region-eriador-west.jpg', minDist: 65, points: eriadorWestPoints },
+      { image: '', minDist: 344, points: [] },
+    ]
+  };
+
+  var points = maps.path[0].points;
 
   itinerary = [
     // Bag End to Rivendell
@@ -319,7 +386,7 @@
 
   var processStride = function(data) {
     stride = parseFloat(data.user.strideLengthWalking);
-    totalSteps = parseInt(((957 / 0.621371192) * 100000) / stride)
+    totalSteps = parseInt(((957 / 0.621371192) * 100000) / stride);
     document.getElementById('info-final-steps').innerText = totalSteps.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   };
 
@@ -387,12 +454,68 @@
   .catch(function(error) {
     console.log(error);
   });
+  /*stride = 72.06;
+  steps = 147000;
+  totalSteps = parseInt(((957 / 0.621371192) * 100000) / stride);
+  document.getElementById('info-final-steps').innerText = totalSteps.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  setTimeout(appRun, 100);*/
 
   //
   // Setup etc.
   //
 
+  // Window resize
   window.addEventListener('resize', function() {
+    clearMap();
+    drawPaths(points);
+    drawPosition(steps);
+  });
+
+  // Map switches
+  var pathMapSwitch = document.getElementById('map-switch-path');
+  var regionalMapSwitch = document.getElementById('map-switch-regional');
+
+  pathMapSwitch.style.color = '#f90054';
+  pathMapSwitch.style.fontWeight = 'bold';
+
+  pathMapSwitch.addEventListener('click', function() {
+    document.getElementById('map-world').style.backgroundImage = 'url("' + maps.path[0].image + '")';
+
+    var switches = document.getElementsByClassName('map-switch');
+    for (var i = 0; i < switches.length; i++) {
+      switches[i].style.color = '#000000';
+      switches[i].style.fontWeight = 'normal';
+    }
+    document.getElementById('map-switch-path').style.color = '#f90054';
+    document.getElementById('map-switch-path').style.fontWeight = 'bold';
+
+    points = maps.path[0].points;
+    clearMap();
+    drawPaths(points);
+    drawPosition(steps);
+  });
+
+  regionalMapSwitch.addEventListener('click', function() {
+    var distanceKm = (steps * stride) / 100000;
+    var distanceMi = distanceKm * 0.621371192;
+    var index;
+    for (var i = 0; i < maps.regional.length; i++) {
+      if (distanceMi >= maps.regional[i].minDist) {
+        index = i;
+      }
+      else break;
+    }
+    document.getElementById('map-world').style.backgroundImage = 'url("' + maps.regional[index].image + '")';
+
+    var switches = document.getElementsByClassName('map-switch');
+    for (var i = 0; i < switches.length; i++) {
+      switches[i].style.color = '#000000';
+      switches[i].style.fontWeight = 'normal';
+    }
+    document.getElementById('map-switch-regional').style.color = '#f90054';
+    document.getElementById('map-switch-regional').style.fontWeight = 'bold';
+
+    points = maps.regional[index].points;
     clearMap();
     drawPaths(points);
     drawPosition(steps);
