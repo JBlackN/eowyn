@@ -118,7 +118,7 @@
     { coords: [81.48, 54.64], dist: 11.0, smooth: [[84, 54.9]] },
     { coords: [86, 54.15], dist: 11.0 },
     { coords: [90.3, 50.75], dist: 10.0, smooth: [[93.5, 49.1]] },
-    { coords: [95, 48.5], dist: 4.0, smooth: [[96, 48.2]] },
+    { coords: [95, 48.5], dist: 10.0, smooth: [[96, 48.2]] },
     { coords: [101, 48.13], dist: 100.0  },
   ];
 
@@ -167,8 +167,8 @@
     ],
     regional: [
       { image: './maps/region-shire.jpg', minDist: 0, points: shirePoints },
-      { image: './maps/region-eriador-west.jpg', minDist: 59, points: eriadorWestPoints },
-      { image: '', minDist: 345, points: [] }, // FIXME: 344
+      { image: './maps/region-eriador-west.jpg', minDist: 65, points: eriadorWestPoints },
+      { image: '', minDist: 344, points: [] },
     ]
   };
 
@@ -453,7 +453,7 @@
     console.log(error);
   });*/
   stride = 72.06;
-  steps = 140000;
+  steps = 147000;
   totalSteps = ((957 / 0.621371192) * 100000) / stride;
   appRun();
 
