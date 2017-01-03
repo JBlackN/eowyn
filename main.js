@@ -302,7 +302,10 @@
 
   var processResponse = function(res) {
     if (!res.ok) {
-      throw new Error('Fitbit API request failed: ' + res);
+      if (res.status == 401)
+        window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=***REMOVED***&redirect_uri=https%3A%2F%2F***REMOVED***%2F&scope=activity%20location%20profile%20settings%20social&expires_in=600');
+      else
+        throw new Error('Fitbit API request failed: ' + res);
     }
 
     var contentType = res.headers.get('content-type')
