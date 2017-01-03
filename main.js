@@ -433,8 +433,7 @@
     //drawPosition(steps);
   };
 
-// FIXME
-  /*fetch(
+  fetch(
     'https://api.fitbit.com/1/user/-/profile.json',
     {
       headers: new Headers({
@@ -451,12 +450,12 @@
   .then(appRun)
   .catch(function(error) {
     console.log(error);
-  });*/
-  stride = 72.06;
+  });
+  /*stride = 72.06;
   steps = 147000;
   totalSteps = parseInt(((957 / 0.621371192) * 100000) / stride);
   document.getElementById('info-final-steps').innerText = totalSteps.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  setTimeout(appRun, 100);
+  setTimeout(appRun, 100);*/
 
   //
   // Setup etc.
