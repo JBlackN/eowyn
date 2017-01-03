@@ -108,17 +108,6 @@
   ];
 
   var shirePoints = [
-    //{ dist: 0, cdist: 0, day: 1, text: 'Bilbo vyběhl ze Dna pytle na jih, dolů ulicí směrem k Hobitínu.' },
-    //{ dist: 0.5, cdist: 0.5, day: 1, text: 'Bilbo překročil most přes Vodu a dal se na východ po cestě k Povodí.' },
-    //{ dist: 4.5, cdist: 5, day: 1, text: 'Bilbo doběhl k hospodě U Zeleného draka v Povodí. Trpaslíci pro něj měli přichystaného poníka a všichni se vydali ihned na cestu. Čaroděj Gandalf se k nim brzy připojil. Odbočili na jihovýchod po cestě z Povodí. Cesta byla obklopena vysokými břehy porostlými křovím.' },
-    //{ dist: 2, cdist: 7, day: 1, text: 'Společnost dorazila k Velké východní cestě a pokračovala dál na východ.' },
-    //{ dist: 2, cdist: 9,  day: 1, text: 'Společnost projela okolo Tříčtvrtkového kamene.' },
-    //{ dist: 2, cdist: 11, day: 1, text: 'Společnost se utábořila na noc. Ráno pokračovali volným tempem na východ po Cestě.' },
-    //{ dist: 12, cdist: 23, day: 2, text: 'Žabovřesky. Společnost přenocovala v hospodě U Plovoucí klády a ráno pokračovala na východ po Cestě volným tempem.' },
-    //{ dist: 11, cdist: 34, day: 3, text: 'Přes pole na jihu byly vidět stromy Zálesí. Společnost se utábořila a ráno pokračovala na východ po Cestě volným tempem.' },
-    //{ dist: 11, cdist: 45, day: 4, text: 'Společnost dorazila k mostu přes Brandyvínu a strávila noc v hospodě U Mostu. Ráno překročili Brandyvínu. Minuli cestu vedoucí na jih k Rádovsku a projeli okolo Vysokého křoví. Na jihu se vynořil západní okraj Starého Hvozdu.' },
-    //{ dist: 10, cdist: 55, day: 5, text: 'Společnost se utábořila na noc vedle Cesty. Ráno pokračovali na východ. Od jihu se k nim Starý Hvozd stále víc přibližoval.' },
-    //{ dist: 4, cdist: 65, day: 6, text: 'Společnost se utábořila na noc. Ráno minuli východní okraj Starého Hvozdu.' },
     { coords: [66.8, 51.7], dist: 0.0, smooth: [[67.1, 52.1], [67.8, 52.7], [68.05, 53], [68, 53.2]] },
     { coords: [67.6, 54.3], dist: 0.5, smooth: [[67.5, 54.8], [68.5, 55.1]] },
     { coords: [69.15, 55.85], dist: 4.5, smooth: [[69.3, 55.95]] },
@@ -133,7 +122,44 @@
     { coords: [101, 48.13], dist: 100.0  },
   ];
 
-  var eriadorWestPoints = [];
+  var eriadorWestPoints = [
+    { coords: [59, 59.8], dist: 0.0, smooth: [[59.5, 61]] },
+    { coords: [60.9, 61.15], dist: 11.0 },
+    { coords: [62.2, 61], dist: 12.0 },
+    { coords: [63.5, 60.75], dist: 11.0 },
+    { coords: [64.95, 60.4], dist: 11.0 },
+    { coords: [66.2, 59.95], dist: 10.0 },
+    { coords: [67.5, 59.15], dist: 10.0 },
+    { coords: [69.3, 58.6], dist: 10.0 },
+    { coords: [70.75, 59.1], dist: 10.0 },
+    { coords: [72, 59.5], dist: 6.0 },
+    { coords: [73.2, 60.3], dist: 10.0 },
+    { coords: [74, 60.8], dist: 12.0 },
+    { coords: [74.9, 61.1], dist: 12.0 },
+    { coords: [75.7, 61.1], dist: 12.0 },
+    { coords: [76.45, 61.2], dist: 12.0 },
+    { coords: [77.3, 61.1], dist: 11.0 },
+    { coords: [78.65, 60.85], dist: 10.0 },
+    { coords: [80.1, 60.5], dist: 10.0 },
+    { coords: [81.4, 59.9], dist: 10.0 },
+    { coords: [82.4, 58.9], dist: 10.0 },
+    { coords: [83.2, 57.9], dist: 10.0 },
+    { coords: [83.9, 57.1], dist: 9.0 },
+    { coords: [84.8, 55.95], dist: 9.0 },
+    { coords: [85.9, 55.1], dist: 9.0 },
+    { coords: [87, 54.6], dist: 9.0 },
+    { coords: [88.2, 54.6], dist: 9.0 },
+    { coords: [89.5, 55.1], dist: 9.0 },
+    { coords: [90.8, 55.55], dist: 9.0 },
+    { coords: [91.8, 55.68], dist: 9.0 },
+    { coords: [92.7, 55.7], dist: 9.0 },
+    { coords: [93.7, 55.8], dist: 9.0 },
+    { coords: [94.25, 56.25], dist: 9.0 },
+    { coords: [94.7, 56.8], dist: 8.0, smooth: [[95.4, 57.7]] },
+    { coords: [97, 57.8], dist: 15.0, smooth:[[97.3, 58.3], [97.1, 59.7], [96.73, 60.45]] },
+    { coords: [97.8, 61.15], dist: 12.0 },
+    { coords: [101, 62], dist: 100.0 },
+  ];
 
   var maps = {
     path: [
@@ -141,7 +167,8 @@
     ],
     regional: [
       { image: './maps/region-shire.jpg', minDist: 0, points: shirePoints },
-      { image: './maps/region-eriador-west.jpg', minDist: 65, points: eriadorWestPoints },
+      { image: './maps/region-eriador-west.jpg', minDist: 59, points: eriadorWestPoints },
+      { image: '', minDist: 345, points: [] }, // FIXME: 344
     ]
   };
 
