@@ -34,7 +34,7 @@ html, body {
 }
 
 #header li a:hover {
-  color: #f90054;
+  color: #f90054 !important;
 }
 
 #map-info-wrapper {
