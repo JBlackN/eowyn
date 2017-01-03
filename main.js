@@ -454,8 +454,9 @@
   });*/
   stride = 72.06;
   steps = 147000;
-  totalSteps = ((957 / 0.621371192) * 100000) / stride;
-  appRun();
+  totalSteps = parseInt(((957 / 0.621371192) * 100000) / stride);
+  document.getElementById('info-final-steps').innerText = totalSteps.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  setTimeout(appRun, 100);
 
   //
   // Setup etc.
