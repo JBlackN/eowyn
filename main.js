@@ -355,7 +355,7 @@
   var currentMarker = 4.0;
 
   if (!window.location.hash) {
-    window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=***REMOVED***&redirect_uri=https%3A%2F%2F***REMOVED***%2F&scope=activity%20location%20profile%20settings%20social&expires_in=600');
+    window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=' + fitbitClientId + '&redirect_uri=' + fitbitCallbackURI + '&scope=activity%20location%20profile%20settings%20social&expires_in=600');
   }
   else {
     var fragmentQueryParameters = {};
@@ -370,7 +370,7 @@
   var processResponse = function(res) {
     if (!res.ok) {
       if (res.status == 401)
-        window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=***REMOVED***&redirect_uri=https%3A%2F%2F***REMOVED***%2F&scope=activity%20location%20profile%20settings%20social&expires_in=600');
+        window.location.replace('https://www.fitbit.com/oauth2/authorize?response_type=token&client_id=' + fitbitClientId + '&redirect_uri=' + fitbitCallbackURI + '&scope=activity%20location%20profile%20settings%20social&expires_in=600');
       else
         throw new Error('Fitbit API request failed: ' + res);
     }
